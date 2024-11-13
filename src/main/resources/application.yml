@@ -1,13 +1,16 @@
 server:
-  port: 9001
+  ##랜덤 포트 설정
+  port: 0
 
 spring:
   application:
     name: user-service
 
 eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://192.168.0.83:8761/eureka
+      defaultZone: http://172.29.104.112:8761/eureka
